@@ -2,31 +2,47 @@
 #define OPENGL_H_
 
 #include <GL/glut.h>
+#include "Cavalo.h"
 
 /*===================== Teclas =====================*/
-const unsigned char TECLA_ESC = 27;
 const unsigned char TECLA_CIMA = GLUT_KEY_UP;
 const unsigned char TECLA_BAIXO = GLUT_KEY_DOWN;
+const unsigned char TECLA_ESQUERDA = GLUT_KEY_LEFT;
+const unsigned char TECLA_DIREITA = GLUT_KEY_RIGHT;
+const unsigned char TECLA_ESC = 27;
+const unsigned char TECLA_F2 = GLUT_KEY_F2;
+const unsigned char TECLA_F3 = GLUT_KEY_F3;
 /*==================================================*/
 
 /*============== Atributos da Janela ===============*/
 int janela;
-unsigned int larguraJanela;
-unsigned int alturaJanela;
+bool telaCheia = false;
+unsigned int larguraJanela = 800;
+unsigned int alturaJanela = 600;
 /*==================================================*/
 
-/**
- * Inicializar configurações do OpenGL.
- */
-void inicializarOpenGL() {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);	// Limpar a janela para preto
-	glClearDepth(1.0);						// Habilitar limpeza do buffer de profundidade
-	glDepthFunc(GL_LEQUAL);					// Tipo do teste de profundidade
-	glEnable(GL_DEPTH_TEST);				// Habilitar teste de profundidade
-	glShadeModel(GL_SMOOTH);				// Habilitar Smooth Color Shading
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();						// Carregar a matriz identidade como inicial
-	glMatrixMode(GL_MODELVIEW);
+/*======== Configuração da Luz e Material ==========*/
+GLfloat luzDifusa[] = {0.5f, 0.5f, 0.5f, 1.0};
+GLfloat luzAmbiente[] = {0.5f, 0.5f, 0.5f, 0.7};
+GLfloat posicaoLuz[] = {300.0f, 300.0f, 300.0f, 0.0f};
+GLfloat matSpec[] = {0.8f, 0.2f, 0.2f, 1.0};
+GLfloat	matDiff[] = {0.8f, 0.2f, 0.2f, 1.0};
+GLfloat	matShin[] = {10.0f};
+/*==================================================*/
+
+/*============ Configuração do Modelo ==============*/
+bool modoCaminhada = true;
+int estagioModelo = 0;
+int numeroTotalEstagios = Cavalo::ESTAGIOS_CAMINHADA;
+/*==================================================*/
+
+void desenharChao() {
+	glPushMatrix();
+	glColor3f(0.29f, 0.6f, 0.0f);
+	glTranslatef(0,-190, -550);
+	glRotatef(90, 1.0, 0.0,0.0);
+	glRectf(-10000, -10000, 10000, 10000);
+	glPopMatrix();
 }
 
 /**
@@ -34,13 +50,25 @@ void inicializarOpenGL() {
  */
 void redesenharMundo() {
 	// Limpar a janela
-	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	glLoadIdentity();
 
-	/**
-	 * DESENHAR ALGO
-	 */
+	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_COLOR_MATERIAL);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, luzDifusa);
+	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, matSpec);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiff);
+	glMaterialfv(GL_FRONT, GL_SHININESS, matShin);
+
+	desenharChao();
+
+	Cavalo cavalo;
+	cavalo.desenhar(estagioModelo, modoCaminhada);
 
 	// Trocar o buffer da memória para ser desenhado
 	glutSwapBuffers();
@@ -65,6 +93,7 @@ void redimensionarJanela(int largura, int altura) {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    gluPerspective(80, (float)larguraJanela / (float)alturaJanela, 1.0, 5000.0);
 
     glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -87,18 +116,59 @@ void tecla(unsigned char tecla, int x, int y) {
 /**
  * Tecla especial pressionada.
  */
-void teclas_de_seta( int tecla, int x, int y ) {
+void teclaEspecial(int tecla, int x, int y) {
 	switch(tecla) {
-		case TECLA_CIMA:
-			glutFullScreen();
+		case TECLA_F2: // Alternar para tela cheia
+			if(telaCheia) {
+				glutReshapeWindow(640, 480);
+			} else {
+				glutFullScreen();
+			}
+
+			telaCheia = !telaCheia;
 			break;
-		case TECLA_BAIXO:
-			glutReshapeWindow(640, 480);
+		case TECLA_F3: // Alternar entre modo caminhada e corrida
+			if(modoCaminhada)
+				numeroTotalEstagios = Cavalo::ESTAGIOS_TROTE;
+			else
+				numeroTotalEstagios = Cavalo::ESTAGIOS_CAMINHADA;
+
+			modoCaminhada = !modoCaminhada;
+			break;
+		case TECLA_CIMA: // Andar para frente
+			estagioModelo++;
+			estagioModelo = estagioModelo % numeroTotalEstagios;
+			break;
+		case TECLA_BAIXO: // Andar para tras
+			estagioModelo--;
+
+			if(estagioModelo < 0)
+				estagioModelo = numeroTotalEstagios - 1;
+			break;
+		case TECLA_ESQUERDA: // Girar para a esquerda
+			break;
+		case TECLA_DIREITA: // Girar para a direita
 			break;
 		default:
-			//printf("Teclaram: %d\n", tecla);
 			break;
 	}
+}
+
+/**
+ * Inicializar configurações do OpenGL.
+ */
+void inicializarOpenGL() {
+	glClearColor(0.0, 0.29f, 0.6f, 0.0);
+	glClearDepth(5.0);
+	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_DEPTH_TEST);
+	glShadeModel(GL_SMOOTH);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+	glMatrixMode(GL_MODELVIEW);
 }
 
 /**
@@ -107,15 +177,21 @@ void teclas_de_seta( int tecla, int x, int y ) {
 int main(int argc, char *argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(640, 480);
-	glutInitWindowPosition(0, 0);
-	janela = glutCreateWindow("Título da Janela");
+
+	// Criar a janela
+	glutInitWindowSize(larguraJanela, alturaJanela);
+	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - larguraJanela)/2,
+	                       (glutGet(GLUT_SCREEN_HEIGHT) - alturaJanela)/2);
+	janela = glutCreateWindow("OpenGL - Modelo Hierárquico: Cavalo");
+
+	// Funções
 	glutReshapeFunc(redimensionarJanela);
 	glutDisplayFunc(redesenharMundo);
 	glutKeyboardFunc(tecla);
-	glutSpecialFunc(teclas_de_seta);
+	glutSpecialFunc(teclaEspecial);
 	glutIdleFunc(mostrarMundo);
 	inicializarOpenGL();
+
 	glutMainLoop();
 	return 0;
 }
