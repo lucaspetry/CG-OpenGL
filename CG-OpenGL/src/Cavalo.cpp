@@ -52,26 +52,54 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	glutSolidSphere(1, 10, 10);
 
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
-	this->desenharPerna(estagio, caminhada, PosicaoPerna::TRASEIRA_ESQUERDA);
+	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_ESQUERDA);
 	glTranslatef(0, 0, LARGURA_NADEGAS * 0.9);
-	this->desenharPerna(estagio, caminhada, PosicaoPerna::TRASEIRA_DIREITA);
+	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_DIREITA);
 
 	glTranslatef(COMPRIMENTO_TRONCO * 0.8, 0, -metadeNadegas * 0.9);
 	glScalef(1.2, 1.1, LARGURA_NADEGAS);
 	glutSolidSphere(1, 10, 10);
 
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
-	this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_ESQUERDA);
+	//this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_ESQUERDA);
 	glTranslatef(0, 0, LARGURA_NADEGAS * 0.9);
-	this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_DIREITA);
+	//this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_DIREITA);
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
 	// Desenhar pescoço e cabeça
 
 	glPopMatrix();
 }
 
-void Cavalo::desenharPerna(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna) {
+void Cavalo::desenharAntebraco(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna) {
 	glPushMatrix();
 
+	if(caminhada)
+		glRotatef(this->angulosCaminhada[perna][estagio], 0, 0, 1);
+	else
+		glRotatef(this->angulosTrote[perna][estagio], 0, 0, 1);
+
+	glRotatef(90, 1, 0, 0);
+	gluCylinder(gluNewQuadric(), 0.4, 0.2, 1.4, 10, 10);
+	glTranslatef(0, 0, 1.4);
+
+	glPushMatrix();
+	glScalef(0.2, 0.2, 0.2);
+	glutSolidSphere(1, 10, 10);
+	glPopMatrix();
+
+	this->desenharCanela(estagio, caminhada, perna);
+
+	glPopMatrix();
+}
+
+void Cavalo::desenharCanela(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna) {
+	glPushMatrix();
+
+	if(caminhada)
+		glRotatef(this->angulosCaminhada[perna + 4][estagio], 0, 1, 0);
+	else
+		glRotatef(this->angulosTrote[perna + 4][estagio], 0, 1, 0);
+
+	gluCylinder(gluNewQuadric(), 0.15, 0.1, 1, 10, 10);
 	glPopMatrix();
 }

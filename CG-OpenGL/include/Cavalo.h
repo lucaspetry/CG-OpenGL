@@ -55,7 +55,8 @@ public:
 private:
 	void rotacionarNaOrigem(double angulo, Eixo eixo);
 	void desenharTronco(const int estagio, const bool caminhada);
-	void desenharPerna(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
+	void desenharAntebraco(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
+	void desenharCanela(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
 
 	const double comprimentoMembros[NUMERO_MEMBROS] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -72,18 +73,18 @@ private:
 			{ 0, 0, 0, 0, 0, 0 }, /* CABEÇA */
 			{ 0, 0, 0, 0, 0, 0 }, /* PESCOÇO */
 			{ 0, 0, 0, 0, 0, 0 }, /* TRONCO */
-			{ -5, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL DIREITO */
-			{ 7, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
-			{ 43, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO DIREITO */
-			{ 11, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
-			{ 7, 0, 0, 0, 0, 0 }, /* CANELA FRONTAL DIREITA */
-			{ 31.5, 0, 0, 0, 0, 0 }, /* CANELA FRONTAL ESQUERDA */
-			{ -44, 0, 0, 0, 0, 0 }, /* CANELA TRASEIRA DIREITA */
-			{ -40.5, 0, 0, 0, 0, 0 }, /* CANELA TRASEIRA ESQUERDA */
-			{ -20, 0, 0, 0, 0, 0 }, /* CASCO FRONTAL DIREITO */
-			{ 5, 0, 0, 0, 0, 0 }, /* CASCO FRONTAL ESQUERDO */
-			{ -38, 32, 56.5, 50.5, -24, -33 }, /* CASCO TRASEIRO DIREITO */
-			{ 35, 0, 0, 0, 0, 0 }, /* CASCO TRASEIRO ESQUERDO */
+			{ 0, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL DIREITO */
+			{ 0, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
+			{ -27, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO DIREITO */
+			{ -8, 0, 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
+			{ 0, 0, 0, 0, 0, 0 }, /* CANELA FRONTAL DIREITA */
+			{ 0, 0, 0, 0, 0, 0 }, /* CANELA FRONTAL ESQUERDA */
+			{ 38, 0, 0, 0, 0, 0 }, /* CANELA TRASEIRA DIREITA */
+			{ 0, 0, 0, 0, 0, 0 }, /* CANELA TRASEIRA ESQUERDA */
+			{ 0, 0, 0, 0, 0, 0 }, /* CASCO FRONTAL DIREITO */
+			{ 0, 0, 0, 0, 0, 0 }, /* CASCO FRONTAL ESQUERDO */
+			{ 0, 0, 0, 0, 0, 0 }, /* CASCO TRASEIRO DIREITO */
+			{ 0, 0, 0, 0, 0, 0 }, /* CASCO TRASEIRO ESQUERDO */
 			{ 0, 0, 0, 0, 0, 0 } /* RABO */
 	};
 
