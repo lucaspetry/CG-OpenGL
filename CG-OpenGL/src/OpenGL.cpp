@@ -2,6 +2,7 @@
 #define OPENGL_H_
 
 #include <GL/glut.h>
+#include <math.h>
 #include "Cavalo.h"
 
 /*===================== Teclas =====================*/
@@ -32,10 +33,17 @@ GLfloat	matShin[] = {10.0f};
 
 /*============ Configuração do Modelo ==============*/
 bool modoCaminhada = true;
+double quantidadeDeslocamento = 0.3;
+double deslocar = 0;
+double anguloModelo = 0;
+GLfloat posicaoModelo[3] = {0, -2, -8};
 int estagioModelo = 0;
-int numeroTotalEstagios = Cavalo::ESTAGIOS_CAMINHADA;
+int numeroEstagios = Cavalo::ESTAGIOS_CAMINHADA;
 /*==================================================*/
 
+/**
+ * Desenhar o chão.
+ */
 void desenharChao() {
 	glPushMatrix();
 	glColor3f(0.29f, 0.6f, 0.0f);
@@ -66,6 +74,15 @@ void redesenharMundo() {
 	glMaterialfv(GL_FRONT, GL_SHININESS, matShin);
 
 	desenharChao();
+
+	posicaoModelo[0] +=  cos(anguloModelo) * deslocar;
+	posicaoModelo[2] +=  sin(anguloModelo) * deslocar;
+
+	glTranslatef(posicaoModelo[0], posicaoModelo[1], posicaoModelo[2]);
+	glRotatef(anguloModelo, 0.0f, 1.0f, 0.0f);
+
+	deslocar = 0;
+	estagioModelo = 0; // TODO remover
 
 	Cavalo cavalo;
 	cavalo.desenhar(estagioModelo, modoCaminhada);
@@ -129,25 +146,30 @@ void teclaEspecial(int tecla, int x, int y) {
 			break;
 		case TECLA_F3: // Alternar entre modo caminhada e corrida
 			if(modoCaminhada)
-				numeroTotalEstagios = Cavalo::ESTAGIOS_TROTE;
+				numeroEstagios = Cavalo::ESTAGIOS_TROTE;
 			else
-				numeroTotalEstagios = Cavalo::ESTAGIOS_CAMINHADA;
+				numeroEstagios = Cavalo::ESTAGIOS_CAMINHADA;
 
 			modoCaminhada = !modoCaminhada;
 			break;
 		case TECLA_CIMA: // Andar para frente
+			deslocar += quantidadeDeslocamento;
 			estagioModelo++;
-			estagioModelo = estagioModelo % numeroTotalEstagios;
+			estagioModelo = estagioModelo % numeroEstagios;
+
 			break;
 		case TECLA_BAIXO: // Andar para tras
+			deslocar -= quantidadeDeslocamento;
 			estagioModelo--;
 
 			if(estagioModelo < 0)
-				estagioModelo = numeroTotalEstagios - 1;
+				estagioModelo = numeroEstagios - 1;
 			break;
 		case TECLA_ESQUERDA: // Girar para a esquerda
+			anguloModelo += 5;
 			break;
 		case TECLA_DIREITA: // Girar para a direita
+			anguloModelo -= 5;
 			break;
 		default:
 			break;

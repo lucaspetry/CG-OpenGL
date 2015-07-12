@@ -12,38 +12,48 @@ public:
 	static const int ESTAGIOS_TROTE = 4;
 	static const int ESCALA = 1;
 
+	static constexpr double COMPRIMENTO_TRONCO = 3.2;
+	static constexpr double LARGURA_TRONCO = 1;
+	static constexpr double LARGURA_NADEGAS = 1.15;
+
+	enum Eixo {
+		EIXO_X,
+		EIXO_Y,
+		EIXO_Z
+	};
+
 	enum PosicaoPerna {
-		FRONTAL_DIREITA,
-		FRONTAL_ESQUERDA,
-		TRASEIRA_DIREITA,
-		TRASEIRA_ESQUERDA
+		FRONTAL_DIREITA = 3,
+		FRONTAL_ESQUERDA = 4,
+		TRASEIRA_DIREITA = 5,
+		TRASEIRA_ESQUERDA = 6
 	};
 
 	enum MembroCorpo {
-		CABECA,
-		PESCOCO,
-		TRONCO,
-		ANTEBRACO_FRONTAL_DIREITO,
-		ANTEBRACO_FRONTAL_ESQUERDO,
-		ANTEBRACO_TRASEIRO_DIREITO,
-		ANTEBRACO_TRASEIRO_ESQUERDO,
-		CANELA_FRONTAL_DIREITA,
-		CANELA_FRONTAL_ESQUERDA,
-		CANELA_TRASEIRA_DIREITA,
-		CANELA_TRASEIRA_ESQUERDA,
-		CASCO_FRONTAL_DIREITO,
-		CASCO_FRONTAL_ESQUERDO,
-		CASCO_TRASEIRO_DIREITO,
-		CASCO_TRASEIRO_ESQUERDO,
-		RABO
+		CABECA = 0,
+		PESCOCO = 1,
+		TRONCO = 2,
+		ANTEBRACO_FRONTAL_DIREITO = 3,
+		ANTEBRACO_FRONTAL_ESQUERDO = 4,
+		ANTEBRACO_TRASEIRO_DIREITO = 5,
+		ANTEBRACO_TRASEIRO_ESQUERDO = 6,
+		CANELA_FRONTAL_DIREITA = 7,
+		CANELA_FRONTAL_ESQUERDA = 8,
+		CANELA_TRASEIRA_DIREITA = 9,
+		CANELA_TRASEIRA_ESQUERDA = 10,
+		CASCO_FRONTAL_DIREITO = 11,
+		CASCO_FRONTAL_ESQUERDO = 12,
+		CASCO_TRASEIRO_DIREITO = 13,
+		CASCO_TRASEIRO_ESQUERDO = 14,
+		RABO = 15
 	};
 
 	Cavalo();
 	virtual ~Cavalo();
 	void desenhar(const int estagio, const bool caminhada);
-	std::vector<double> obterAngulosMembros(const int estagio, const bool caminhada) const;
 
 private:
+	void rotacionarNaOrigem(double angulo, Eixo eixo);
 	void desenharTronco(const int estagio, const bool caminhada);
 	void desenharPerna(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
 
