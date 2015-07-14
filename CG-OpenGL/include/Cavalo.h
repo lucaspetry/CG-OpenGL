@@ -69,7 +69,7 @@ private:
 	 * Angulos de caminhada. Cada ângulo é relativo ao membro anteriormente desenhado.
 	 */
 	const double angulosCaminhada[NUMERO_MEMBROS][ESTAGIOS_CAMINHADA] = {
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, /* CABEÇA */
+			{ 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90 }, /* CABEÇA */
 			{ 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45 }, /* PESCOÇO */
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, /* TRONCO */
 
