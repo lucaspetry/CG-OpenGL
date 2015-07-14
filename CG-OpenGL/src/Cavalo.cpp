@@ -80,6 +80,9 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.5, 30, 30); // Cabeça
+	glTranslatef(0, 0, 1.5);
+	glScalef(0.18, 0.18, 0.18);
+	glutSolidSphere(1, 20, 20);
 	glPopMatrix();
 
 	glPopMatrix();
