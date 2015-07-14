@@ -66,17 +66,17 @@ private:
 	};
 
 	/**
-	 * Angulos de caminhada. Cada �ngulo � relativo ao membro anteriormente desenhado.
+	 * Angulos de caminhada. Cada ângulo é relativo ao membro anteriormente desenhado.
 	 */
 	const double angulosCaminhada[NUMERO_MEMBROS][ESTAGIOS_CAMINHADA] = {
-			{ 90, 90, 90, 90, 90, 90 }, /* CABE�A */
-			{ 45, 45, 45, 45, 45, 45 }, /* PESCO�O */
+			{ 90, 90, 90, 90, 90, 90 }, /* CABEÇA */
+			{ 45, 45, 45, 45, 45, 45 }, /* PESCOÇO */
 			{ 0, 0, 0, 0, 0, 0 }, /* TRONCO */
 
-			{ 4, -4, -15, -4, 20, 37 }, /* ANTEBRA�O FRONTAL DIREITO */
-			{ -4, 20, 37, 4, -4, -15 }, /* ANTEBRA�O FRONTAL ESQUERDO */
-			{ -28, -37, -34, -6, -8, -18 }, /* ANTEBRA�O TRASEIRO DIREITO */
-			{ -6, -8, -18, -28, -37, -34 }, /* ANTEBRA�O TRASEIRO ESQUERDO */
+			{ 4, -4, -15, -4, 20, 37 }, /* ANTEBRAÇO FRONTAL DIREITO */
+			{ -4, 20, 37, 4, -4, -15 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
+			{ -28, -37, -34, -6, -8, -18 }, /* ANTEBRAÇO TRASEIRO DIREITO */
+			{ -6, -8, -18, -28, -37, -34 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
 
 			{ 2, 0, 0, -28, -71, -37 }, /* CANELA FRONTAL DIREITA */
 			{ -28, -71, -37, 2, 0, 0 }, /* CANELA FRONTAL ESQUERDA */
@@ -92,17 +92,17 @@ private:
 	};
 
 	/**
-	 * Angulos de trote. Cada �ngulo � relativo ao membro anteriormente desenhado.
+	 * Angulos de trote. Cada ângulo é relativo ao membro anteriormente desenhado.
 	 */
 	const double angulosTrote[NUMERO_MEMBROS][ESTAGIOS_TROTE] = {
-			{ 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70 }, /* CABE�A */
-			{ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55 }, /* PESCO�O */
+			{ 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70 }, /* CABEÇA */
+			{ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55 }, /* PESCOÇO */
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, /* TRONCO */
 
-			{ -10, 1, 12, 23, 35.6, 48.2, 61, 55.5, 51, 47, 28, 9 }, /* ANTEBRA�O FRONTAL DIREITO */
-			{ 56, 53, 50, 47, 24.5, 2, -20, 0.5, 20, 39, 45, 50.5 }, /* ANTEBRA�O FRONTAL ESQUERDO */
-			{ -27, -38.6, -50.2, -62, -57.5, -53, -49, -51, -53.5, -56, -45.2, -36.6 }, /* ANTEBRA�O TRASEIRO DIREITO */
-			{ -51, -32, -14.5, 4, -6.5, -17.5, -28, -19, -10.5, -2, -18.3, -35 }, /* ANTEBRA�O TRASEIRO ESQUERDO */
+			{ -10, 1, 12, 23, 35.6, 48.2, 61, 55.5, 51, 47, 28, 9 }, /* ANTEBRAÇO FRONTAL DIREITO */
+			{ 56, 53, 50, 47, 24.5, 2, -20, 0.5, 20, 39, 45, 50.5 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
+			{ -27, -38.6, -50.2, -62, -57.5, -53, -49, -51, -53.5, -56, -45.2, -36.6 }, /* ANTEBRAÇO TRASEIRO DIREITO */
+			{ -51, -32, -14.5, 4, -6.5, -17.5, -28, -19, -10.5, -2, -18.3, -35 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
 
 			{ -3, -28.5, -54.5, -80, -71.5, -62.5, -54, -36, -18, 0, 0, -3 }, /* CANELA FRONTAL DIREITA */
 			{ -57, -39, -21.5, -4, -3, -0.5, 1, -28, -57.5, -87, -77, -67 }, /* CANELA FRONTAL ESQUERDA */

@@ -22,7 +22,7 @@ unsigned int larguraJanela = 800;
 unsigned int alturaJanela = 600;
 /*==================================================*/
 
-/*======== Configura��o da Luz e Material ==========*/
+/*======== Configuração da Luz e Material ==========*/
 GLfloat luzDifusa[] = {0.5f, 0.5f, 0.5f, 1.0};
 GLfloat luzAmbiente[] = {0.5f, 0.5f, 0.5f, 0.7};
 GLfloat posicaoLuz[] = {300.0f, 300.0f, 300.0f, 0.0f};
@@ -31,7 +31,7 @@ GLfloat	matDiff[] = {0.8f, 0.2f, 0.2f, 1.0};
 GLfloat	matShin[] = {0.0f};
 /*==================================================*/
 
-/*============ Configura��o do Modelo ==============*/
+/*============ Configuração do Modelo ==============*/
 bool modoCaminhada = true;
 bool pausado = false;
 double anguloModelo = 0;
@@ -40,7 +40,7 @@ int numeroEstagios = Cavalo::ESTAGIOS_CAMINHADA;
 /*==================================================*/
 
 /**
- * Desenhar o ch�o.
+ * Desenhar o chão.
  */
 void desenharChao() {
 	glPushMatrix();
@@ -79,7 +79,7 @@ void redesenharMundo() {
 	Cavalo cavalo;
 	cavalo.desenhar(estagioModelo, modoCaminhada);
 
-	// Trocar o buffer da mem�ria para ser desenhado
+	// Trocar o buffer da memória para ser desenhado
 	glutSwapBuffers();
 
 	if(!pausado) {
@@ -94,7 +94,7 @@ void redesenharMundo() {
 }
 
 /**
- * Mostrar mundo (Idle function - quando nada est� sendo feito).
+ * Mostrar mundo (Idle function - quando nada está sendo feito).
  */
 void mostrarMundo() {
 	redesenharMundo();
@@ -169,7 +169,7 @@ void teclaEspecial(int tecla, int x, int y) {
 }
 
 /**
- * Inicializar configura��es do OpenGL.
+ * Inicializar configurações do OpenGL.
  */
 void inicializarOpenGL() {
 	glClearColor(0.0, 0.29f, 0.6f, 0.0);
@@ -186,7 +186,7 @@ void inicializarOpenGL() {
 }
 
 /**
- * Fun��o principal do programa.
+ * Função principal do programa.
  */
 int main(int argc, char *argv[]) {
 	glutInit(&argc, argv);
@@ -196,9 +196,9 @@ int main(int argc, char *argv[]) {
 	glutInitWindowSize(larguraJanela, alturaJanela);
 	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - larguraJanela)/2,
 	                       (glutGet(GLUT_SCREEN_HEIGHT) - alturaJanela)/2);
-	janela = glutCreateWindow("OpenGL - Modelo Hier�rquico: Cavalo");
+	janela = glutCreateWindow("OpenGL - Modelo Hierárquico: Cavalo");
 
-	// Fun��es
+	// Funções
 	glutReshapeFunc(redimensionarJanela);
 	glutDisplayFunc(redesenharMundo);
 	glutKeyboardFunc(tecla);
