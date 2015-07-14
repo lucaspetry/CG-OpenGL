@@ -58,11 +58,11 @@ private:
 	void desenharCasco(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
 
 	const double alturaTroncoCaminhada[ESTAGIOS_CAMINHADA] = {
-		0.02, 0, 0.03, 0.08, 0.1, 0.07, 0.08, 0.05, 0.03, 0.03, 0.02, 0, 0.03
+		0.02, 0.017, 0.04, 0.08, 0.09, 0.07, 0.08, 0.05, 0.03, 0.03, 0.02, 0, 0.03
 	};
 
 	const double alturaTroncoTrote[ESTAGIOS_TROTE] = {
-		0, 0, 0, 0
+		0, 0.5, 0, 0.5
 	};
 
 	/**
@@ -95,8 +95,8 @@ private:
 	 * Angulos de trote. Cada ângulo é relativo ao membro anteriormente desenhado.
 	 */
 	const double angulosTrote[NUMERO_MEMBROS][ESTAGIOS_TROTE] = {
-			{ 0, 0, 0, 0 }, /* CABEÇA */
-			{ 0, 0, 0, 0 }, /* PESCOÇO */
+			{ 90, 90, 90, 90 }, /* CABEÇA */
+			{ 45, 45, 45, 45 }, /* PESCOÇO */
 			{ 0, 0, 0, 0 }, /* TRONCO */
 
 			{ -10, 23, 61, 47 }, /* ANTEBRAÇO FRONTAL DIREITO */
