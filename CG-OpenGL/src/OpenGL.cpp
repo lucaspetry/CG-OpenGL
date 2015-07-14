@@ -22,7 +22,7 @@ unsigned int larguraJanela = 800;
 unsigned int alturaJanela = 600;
 /*==================================================*/
 
-/*======== Configuração da Luz e Material ==========*/
+/*======== Configuraï¿½ï¿½o da Luz e Material ==========*/
 GLfloat luzDifusa[] = {0.5f, 0.5f, 0.5f, 1.0};
 GLfloat luzAmbiente[] = {0.5f, 0.5f, 0.5f, 0.7};
 GLfloat posicaoLuz[] = {300.0f, 300.0f, 300.0f, 0.0f};
@@ -31,7 +31,7 @@ GLfloat	matDiff[] = {0.8f, 0.2f, 0.2f, 1.0};
 GLfloat	matShin[] = {0.0f};
 /*==================================================*/
 
-/*============ Configuração do Modelo ==============*/
+/*============ Configuraï¿½ï¿½o do Modelo ==============*/
 bool modoCaminhada = true;
 bool pausado = false;
 double anguloModelo = 0;
@@ -40,7 +40,7 @@ int numeroEstagios = Cavalo::ESTAGIOS_CAMINHADA;
 /*==================================================*/
 
 /**
- * Desenhar o chão.
+ * Desenhar o chï¿½o.
  */
 void desenharChao() {
 	glPushMatrix();
@@ -79,12 +79,12 @@ void redesenharMundo() {
 	Cavalo cavalo;
 	cavalo.desenhar(estagioModelo, modoCaminhada);
 
-	// Trocar o buffer da memória para ser desenhado
+	// Trocar o buffer da memï¿½ria para ser desenhado
 	glutSwapBuffers();
 
 	if(!pausado) {
 		if(modoCaminhada)
-			usleep(120000);
+			usleep(80000);
 		else
 			usleep(60000);
 
@@ -94,7 +94,7 @@ void redesenharMundo() {
 }
 
 /**
- * Mostrar mundo (Idle function - quando nada está sendo feito).
+ * Mostrar mundo (Idle function - quando nada estï¿½ sendo feito).
  */
 void mostrarMundo() {
 	redesenharMundo();
@@ -169,7 +169,7 @@ void teclaEspecial(int tecla, int x, int y) {
 }
 
 /**
- * Inicializar configurações do OpenGL.
+ * Inicializar configuraï¿½ï¿½es do OpenGL.
  */
 void inicializarOpenGL() {
 	glClearColor(0.0, 0.29f, 0.6f, 0.0);
@@ -186,7 +186,7 @@ void inicializarOpenGL() {
 }
 
 /**
- * Função principal do programa.
+ * Funï¿½ï¿½o principal do programa.
  */
 int main(int argc, char *argv[]) {
 	glutInit(&argc, argv);
@@ -196,9 +196,9 @@ int main(int argc, char *argv[]) {
 	glutInitWindowSize(larguraJanela, alturaJanela);
 	glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH) - larguraJanela)/2,
 	                       (glutGet(GLUT_SCREEN_HEIGHT) - alturaJanela)/2);
-	janela = glutCreateWindow("OpenGL - Modelo Hierárquico: Cavalo");
+	janela = glutCreateWindow("OpenGL - Modelo Hierï¿½rquico: Cavalo");
 
-	// Funções
+	// Funï¿½ï¿½es
 	glutReshapeFunc(redimensionarJanela);
 	glutDisplayFunc(redesenharMundo);
 	glutKeyboardFunc(tecla);
