@@ -28,7 +28,7 @@ GLfloat luzAmbiente[] = {0.5f, 0.5f, 0.5f, 0.7};
 GLfloat posicaoLuz[] = {300.0f, 300.0f, 300.0f, 0.0f};
 GLfloat matSpec[] = {0.8f, 0.2f, 0.2f, 1.0};
 GLfloat	matDiff[] = {0.8f, 0.2f, 0.2f, 1.0};
-GLfloat	matShin[] = {10.0f};
+GLfloat	matShin[] = {0.0f};
 /*==================================================*/
 
 /*============ Configuração do Modelo ==============*/
@@ -83,7 +83,11 @@ void redesenharMundo() {
 	glutSwapBuffers();
 
 	if(!pausado) {
-		usleep(120000);
+		if(modoCaminhada)
+			usleep(120000);
+		else
+			usleep(60000);
+
 		estagioModelo++;
 		estagioModelo = estagioModelo % numeroEstagios;
 	}

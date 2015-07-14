@@ -9,7 +9,7 @@ class Cavalo {
 public:
 	static const int NUMERO_MEMBROS = 16;
 	static const int ESTAGIOS_CAMINHADA = 13;
-	static const int ESTAGIOS_TROTE = 4;
+	static const int ESTAGIOS_TROTE = 12;
 
 	static constexpr double COMPRIMENTO_TRONCO = 3.2;
 	static constexpr double LARGURA_TRONCO = 1;
@@ -62,7 +62,7 @@ private:
 	};
 
 	const double alturaTroncoTrote[ESTAGIOS_TROTE] = {
-		0, 0.5, 0, 0.5
+		0, 0.1, 0.35, 0.5, 0.35, 0.1, 0, 0.1, 0.35, 0.5, 0.35, 0.1
 	};
 
 	/**
@@ -95,26 +95,26 @@ private:
 	 * Angulos de trote. Cada ângulo é relativo ao membro anteriormente desenhado.
 	 */
 	const double angulosTrote[NUMERO_MEMBROS][ESTAGIOS_TROTE] = {
-			{ 90, 90, 90, 90 }, /* CABEÇA */
-			{ 45, 45, 45, 45 }, /* PESCOÇO */
-			{ 0, 0, 0, 0 }, /* TRONCO */
+			{ 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70 }, /* CABEÇA */
+			{ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55 }, /* PESCOÇO */
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, /* TRONCO */
 
-			{ -10, 23, 61, 47 }, /* ANTEBRAÇO FRONTAL DIREITO */
-			{ 56, 47, -20, 39 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
-			{ -27, -62, -49, -56 }, /* ANTEBRAÇO TRASEIRO DIREITO */
-			{ -51, 4, -28, -2 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
+			{ -10, 1, 12, 23, 35.6, 48.2, 61, 55.5, 51, 47, 28, 9 }, /* ANTEBRAÇO FRONTAL DIREITO */
+			{ 56, 53, 50, 47, 24.5, 2, -20, 0.5, 20, 39, 45, 50.5 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
+			{ -27, 38.6, 50.2, -62, -57.5, -53, -49, -51, -53.5, -56, -45.2, -36.6 }, /* ANTEBRAÇO TRASEIRO DIREITO */
+			{ -51, -32, -14.5, 4, -6.5, -17.5, -28, -19, -10.5, -2, -18.3, -35 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
 
-			{ -3, -80, -54, 0 }, /* CANELA FRONTAL DIREITA */
-			{ -57, -4, 1, -87 }, /* CANELA FRONTAL ESQUERDA */
-			{ 75, 41, 53, 77 }, /* CANELA TRASEIRA DIREITA */
-			{ 44, 67, 85, 51 }, /* CANELA TRASEIRA ESQUERDA */
+			{ -3, -28.5, -54.5, -80, -71.5, -62.5, -54, -36, -18, 0, 0, -3 }, /* CANELA FRONTAL DIREITA */
+			{ -57, -39, -21.5, -4, -3, -0.5, 1, -28, -57.5, -87, -77, -67 }, /* CANELA FRONTAL ESQUERDA */
+			{ 75, 63.5, 52.5, 41, 45, 49, 53, 61, 69, 77, 76.5, 75.5 }, /* CANELA TRASEIRA DIREITA */
+			{ 44, 51.5, 59.5, 67, 73, 79, 85, 68.5, 59.5, 51, 49, 46.5 }, /* CANELA TRASEIRA ESQUERDA */
 
-			{ 44, -5, -40, -2 }, /* CASCO FRONTAL DIREITO */
-			{ -21, -2, 48, -3 }, /* CASCO FRONTAL ESQUERDO */
-			{ -31, -5, 32, -45 }, /* CASCO TRASEIRO DIREITO */
-			{ 47, -35, -71, -7 }, /* CASCO TRASEIRO ESQUERDO */
+			{ 44, 360, 360, -5, 360, 360, -40, 360, 360, -2, 360, 360 }, /* CASCO FRONTAL DIREITO */
+			{ -21, 360, 360, -2, 360, 360, 48, 360, 360, -3, 360, 360 }, /* CASCO FRONTAL ESQUERDO */
+			{ -31, 360, 360, -5, 360, 360, 32, 360, 360, -45, 360, 360 }, /* CASCO TRASEIRO DIREITO */
+			{ 47, 360, 360, -35, 360, 360, -71, 360, 360, -7, 360, 360 }, /* CASCO TRASEIRO ESQUERDO */
 
-			{ 0, 0, 0, 0 } /* RABO */
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } /* RABO */
 	};
 
 };

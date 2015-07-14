@@ -81,8 +81,8 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	else
 		glRotatef(this->angulosTrote[CABECA][estagio], 0, 1, 0);
 
-	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.3, 30, 30); // Cabeça
-	glTranslatef(0, 0, 1.3);
+	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.15, 30, 30); // Cabeça
+	glTranslatef(0, 0, 1.15);
 	glScalef(0.18, 0.18, 0.18);
 	glutSolidSphere(1, 20, 20); // Fuço
 	glPopMatrix();
