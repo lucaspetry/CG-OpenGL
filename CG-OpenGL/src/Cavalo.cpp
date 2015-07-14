@@ -59,8 +59,27 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::FRONTAL_DIREITA);
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
 
+	glTranslatef(0, alturaTronco, 0);
 	glPushMatrix();
-	// Desenhar pescoço e cabeça
+	glRotatef(-90, 1, 0, 0);
+
+	if(caminhada)
+		glRotatef(this->angulosCaminhada[PESCOCO][estagio], 0, 1, 0);
+	else
+		glRotatef(this->angulosTrote[PESCOCO][estagio], 0, 1, 0);
+
+	gluCylinder(gluNewQuadric(), 0.7, 0.25, 2, 30, 30); // Pescoço
+	glTranslatef(0, 0, 2);
+
+	glPushMatrix();
+	glScalef(0.5, 0.5, 0.5);
+	glutSolidSphere(1, 20, 20);
+	glPopMatrix();
+
+	glutSolidCone(0.3, 1, 20, 20);
+
+	glRotatef(90, 0, 1, 0);
+	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.5, 30, 30); // Cabeça
 	glPopMatrix();
 
 	glPopMatrix();
