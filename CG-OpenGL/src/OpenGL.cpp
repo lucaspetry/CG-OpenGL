@@ -2,7 +2,6 @@
 #define OPENGL_H_
 
 #include <GL/glut.h>
-#include <math.h>
 #include <unistd.h>
 #include "Cavalo.h"
 

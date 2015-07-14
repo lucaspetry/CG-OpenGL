@@ -2,7 +2,6 @@
 #define CAVALO_H_
 
 #include <GL/glut.h>
-#include <vector>
 
 class Cavalo {
 

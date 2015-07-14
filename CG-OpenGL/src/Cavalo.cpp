@@ -1,5 +1,4 @@
 #include "Cavalo.h"
-#include <iostream>
 
 Cavalo::Cavalo() {
 }
@@ -34,7 +33,7 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 
 	glTranslatef(-metadeTronco * 0.95, 0, 0);
 	glScalef(1.5, 1.2, LARGURA_NADEGAS);
-	glutSolidSphere(1, 20, 20); // Nádegas
+	glutSolidSphere(1, 20, 20); // Nï¿½degas
 
 	glPushMatrix();
 	// Desenhar rabo
@@ -68,7 +67,7 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	else
 		glRotatef(this->angulosTrote[PESCOCO][estagio], 0, 1, 0);
 
-	gluCylinder(gluNewQuadric(), 0.7, 0.25, 2, 30, 30); // Pescoço
+	gluCylinder(gluNewQuadric(), 0.7, 0.25, 2, 30, 30); // Pescoï¿½o
 	glTranslatef(0, 0, 2);
 
 	glPushMatrix();
@@ -81,10 +80,10 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	else
 		glRotatef(this->angulosTrote[CABECA][estagio], 0, 1, 0);
 
-	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.15, 30, 30); // Cabeça
+	gluCylinder(gluNewQuadric(), 0.5, 0.18, 1.15, 30, 30); // Cabeï¿½a
 	glTranslatef(0, 0, 1.15);
 	glScalef(0.18, 0.18, 0.18);
-	glutSolidSphere(1, 20, 20); // Fuço
+	glutSolidSphere(1, 20, 20); // Fuï¿½o
 	glPopMatrix();
 
 	glPopMatrix();
