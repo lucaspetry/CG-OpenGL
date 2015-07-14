@@ -7,29 +7,6 @@ Cavalo::Cavalo() {
 Cavalo::~Cavalo() {
 }
 
-void Cavalo::rotacionarNaOrigem(double angulo, Cavalo::Eixo eixo) {
-	GLdouble matriz[16];
-	glGetDoublev(GL_MODELVIEW_MATRIX, matriz);
-	glLoadIdentity();
-
-	switch(eixo) {
-		case EIXO_X:
-			glRotatef(angulo, 1, 0, 0);
-			break;
-		case EIXO_Y:
-			glRotatef(angulo, 0, 1, 0);
-			break;
-		default:
-			glRotatef(angulo, 0, 0, 1);
-			break;
-	}
-
-	GLdouble matrizRot[16];
-	glGetDoublev(GL_MODELVIEW_MATRIX, matrizRot);
-
-	glMultMatrixd(matriz);
-}
-
 void Cavalo::desenhar(const int estagio, const bool caminhada) {
 	this->desenharTronco(estagio, caminhada);
 }
@@ -42,14 +19,18 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	double metadeNadegas = LARGURA_NADEGAS/(double) 2;
 
 	glRotatef(90, 0, 1, 0);
-	gluCylinder(gluNewQuadric(), LARGURA_TRONCO * 0.92, LARGURA_TRONCO * 1.07, metadeTronco, 10, 10);
+	gluCylinder(gluNewQuadric(), LARGURA_TRONCO * 0.92, LARGURA_TRONCO * 1, metadeTronco, 30, 30); // Parte frontal
 	glRotatef(-180, 0, 1, 0);
-	gluCylinder(gluNewQuadric(), LARGURA_TRONCO * 0.92, LARGURA_TRONCO * 1.07, metadeTronco, 10, 10);
+	gluCylinder(gluNewQuadric(), LARGURA_TRONCO * 0.92, LARGURA_TRONCO * 1.07, metadeTronco, 30, 30); // Parte traseira
 	glRotatef(90, 0, 1, 0);
 
 	glTranslatef(-metadeTronco * 0.95, 0, 0);
 	glScalef(1.5, 1.2, LARGURA_NADEGAS);
-	glutSolidSphere(1, 10, 10);
+	glutSolidSphere(1, 20, 20); // Nádegas
+
+	glPushMatrix();
+	// Desenhar rabo
+	glPopMatrix();
 
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_ESQUERDA);
@@ -57,15 +38,18 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_DIREITA);
 
 	glTranslatef(COMPRIMENTO_TRONCO * 0.8, 0, -metadeNadegas * 0.9);
-	glScalef(1.2, 1.1, LARGURA_NADEGAS);
-	glutSolidSphere(1, 10, 10);
+	glScalef(1.2, 1, LARGURA_NADEGAS);
+	glutSolidSphere(1, 20, 20); // Peitoral
 
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
-	//this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_ESQUERDA);
+	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::FRONTAL_ESQUERDA);
 	glTranslatef(0, 0, LARGURA_NADEGAS * 0.9);
-	//this->desenharPerna(estagio, caminhada, PosicaoPerna::FRONTAL_DIREITA);
+	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::FRONTAL_DIREITA);
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
+
+	glPushMatrix();
 	// Desenhar pescoço e cabeça
+	glPopMatrix();
 
 	glPopMatrix();
 }
@@ -79,16 +63,15 @@ void Cavalo::desenharAntebraco(const int estagio, const bool caminhada, const Ca
 		glRotatef(this->angulosTrote[perna][estagio], 0, 0, 1);
 
 	glRotatef(90, 1, 0, 0);
-	gluCylinder(gluNewQuadric(), 0.4, 0.2, 1.4, 10, 10);
+	gluCylinder(gluNewQuadric(), 0.35, 0.17, 1.4, 30, 30);
 	glTranslatef(0, 0, 1.4);
 
 	glPushMatrix();
-	glScalef(0.2, 0.2, 0.2);
-	glutSolidSphere(1, 10, 10);
+	glScalef(0.17, 0.17, 0.17);
+	glutSolidSphere(1, 30, 30);
 	glPopMatrix();
 
 	this->desenharCanela(estagio, caminhada, perna);
-
 	glPopMatrix();
 }
 
@@ -100,6 +83,33 @@ void Cavalo::desenharCanela(const int estagio, const bool caminhada, const Caval
 	else
 		glRotatef(this->angulosTrote[perna + 4][estagio], 0, 1, 0);
 
-	gluCylinder(gluNewQuadric(), 0.15, 0.1, 1, 10, 10);
+	gluCylinder(gluNewQuadric(), 0.13, 0.08, 1, 30, 30);
+	glTranslatef(0, 0, 1);
+
+	glPushMatrix();
+	glScalef(0.08, 0.08, 0.08);
+	glutSolidSphere(1, 30, 30);
+	glPopMatrix();
+
+	this->desenharCasco(estagio, caminhada, perna);
+	glPopMatrix();
+}
+
+void Cavalo::desenharCasco(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna) {
+	glPushMatrix();
+
+	if(caminhada)
+		glRotatef(this->angulosCaminhada[perna + 8][estagio], 0, 1, 0);
+	else
+		glRotatef(this->angulosTrote[perna + 8][estagio], 0, 1, 0);
+
+	gluCylinder(gluNewQuadric(), 0.06, 0.06, 0.2, 30, 30);
+	glTranslatef(0, 0, 0.2);
+
+	glPushMatrix();
+	glScalef(0.05, 0.05, 0.05);
+	glutSolidCube(1);
+	glPopMatrix();
+
 	glPopMatrix();
 }

@@ -82,7 +82,6 @@ void redesenharMundo() {
 	glRotatef(anguloModelo, 0.0f, 1.0f, 0.0f);
 
 	deslocar = 0;
-	estagioModelo = 0; // TODO remover
 
 	Cavalo cavalo;
 	cavalo.desenhar(estagioModelo, modoCaminhada);
