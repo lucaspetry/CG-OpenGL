@@ -3,6 +3,7 @@
 
 #include <GL/glut.h>
 #include <math.h>
+#include <unistd.h>
 #include "Cavalo.h"
 
 /*===================== Teclas =====================*/
@@ -88,6 +89,9 @@ void redesenharMundo() {
 
 	// Trocar o buffer da memória para ser desenhado
 	glutSwapBuffers();
+	usleep(150000);
+	estagioModelo++;
+	estagioModelo = estagioModelo % numeroEstagios;
 }
 
 /**
