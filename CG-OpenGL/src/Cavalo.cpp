@@ -15,8 +15,16 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	glPushMatrix();
 	glColor3f(0.72f, 0.65f, 0.13f);
 
+	double alturaTronco = 0;
 	double metadeTronco = COMPRIMENTO_TRONCO/(double) 2;
 	double metadeNadegas = LARGURA_NADEGAS/(double) 2;
+
+	if(caminhada)
+		alturaTronco = this->alturaTroncoCaminhada[estagio];
+	else
+		alturaTronco = this->alturaTroncoTrote[estagio];
+
+	glTranslatef(0, alturaTronco, 0);
 
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), LARGURA_TRONCO * 0.92, LARGURA_TRONCO * 1, metadeTronco, 30, 30); // Parte frontal
@@ -32,14 +40,18 @@ void Cavalo::desenharTronco(const int estagio, const bool caminhada) {
 	// Desenhar rabo
 	glPopMatrix();
 
+	glTranslatef(0, -alturaTronco, 0);
+
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_ESQUERDA);
 	glTranslatef(0, 0, LARGURA_NADEGAS * 0.9);
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::TRASEIRA_DIREITA);
 
+	glTranslatef(0, alturaTronco, 0);
 	glTranslatef(COMPRIMENTO_TRONCO * 0.8, 0, -metadeNadegas * 0.9);
 	glScalef(1.2, 1, LARGURA_NADEGAS);
 	glutSolidSphere(1, 20, 20); // Peitoral
+	glTranslatef(0, -alturaTronco, 0);
 
 	glTranslatef(0, 0, -metadeNadegas * 0.9);
 	this->desenharAntebraco(estagio, caminhada, PosicaoPerna::FRONTAL_ESQUERDA);

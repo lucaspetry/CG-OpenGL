@@ -57,12 +57,12 @@ private:
 	void desenharCanela(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
 	void desenharCasco(const int estagio, const bool caminhada, const Cavalo::PosicaoPerna perna);
 
-	const double comprimentoMembros[NUMERO_MEMBROS] = {
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	const double alturaTroncoCaminhada[ESTAGIOS_CAMINHADA] = {
+		0, 0, 0.03, 0.08, 0.1, 0.07, 0.08, 0.05, 0.03, 0.03, 0.01, 0, 0
 	};
 
-	const double larguraMembros[NUMERO_MEMBROS] = {
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	const double alturaTroncoTrote[ESTAGIOS_CAMINHADA] = {
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	};
 
 	/**
