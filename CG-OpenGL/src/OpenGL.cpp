@@ -7,13 +7,12 @@
 #include "Cavalo.h"
 
 /*===================== Teclas =====================*/
-const unsigned char TECLA_CIMA = GLUT_KEY_UP;
-const unsigned char TECLA_BAIXO = GLUT_KEY_DOWN;
 const unsigned char TECLA_ESQUERDA = GLUT_KEY_LEFT;
 const unsigned char TECLA_DIREITA = GLUT_KEY_RIGHT;
 const unsigned char TECLA_ESC = 27;
 const unsigned char TECLA_F2 = GLUT_KEY_F2;
 const unsigned char TECLA_F3 = GLUT_KEY_F3;
+const unsigned char TECLA_F4 = GLUT_KEY_F4;
 /*==================================================*/
 
 /*============== Atributos da Janela ===============*/
@@ -34,10 +33,8 @@ GLfloat	matShin[] = {10.0f};
 
 /*============ Configuração do Modelo ==============*/
 bool modoCaminhada = true;
-double quantidadeDeslocamento = 0.3;
-double deslocar = 0;
+bool pausado = false;
 double anguloModelo = 0;
-GLfloat posicaoModelo[3] = {0, -2, -8};
 int estagioModelo = 0;
 int numeroEstagios = Cavalo::ESTAGIOS_CAMINHADA;
 /*==================================================*/
@@ -76,22 +73,20 @@ void redesenharMundo() {
 
 	desenharChao();
 
-	posicaoModelo[0] +=  cos(anguloModelo) * deslocar;
-	posicaoModelo[2] +=  sin(anguloModelo) * deslocar;
-
-	glTranslatef(posicaoModelo[0], posicaoModelo[1], posicaoModelo[2]);
+	glTranslatef(0, -1.5, -9);
 	glRotatef(anguloModelo, 0.0f, 1.0f, 0.0f);
-
-	deslocar = 0;
 
 	Cavalo cavalo;
 	cavalo.desenhar(estagioModelo, modoCaminhada);
 
 	// Trocar o buffer da memória para ser desenhado
 	glutSwapBuffers();
-	usleep(150000);
-	estagioModelo++;
-	estagioModelo = estagioModelo % numeroEstagios;
+
+	if(!pausado) {
+		usleep(150000);
+		estagioModelo++;
+		estagioModelo = estagioModelo % numeroEstagios;
+	}
 }
 
 /**
@@ -155,18 +150,8 @@ void teclaEspecial(int tecla, int x, int y) {
 
 			modoCaminhada = !modoCaminhada;
 			break;
-		case TECLA_CIMA: // Andar para frente
-			deslocar += quantidadeDeslocamento;
-			estagioModelo++;
-			estagioModelo = estagioModelo % numeroEstagios;
-
-			break;
-		case TECLA_BAIXO: // Andar para tras
-			deslocar -= quantidadeDeslocamento;
-			estagioModelo--;
-
-			if(estagioModelo < 0)
-				estagioModelo = numeroEstagios - 1;
+		case TECLA_F4: // Pausar/Continuar
+			pausado = !pausado;
 			break;
 		case TECLA_ESQUERDA: // Girar para a esquerda
 			anguloModelo += 5;

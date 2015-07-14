@@ -10,7 +10,6 @@ public:
 	static const int NUMERO_MEMBROS = 16;
 	static const int ESTAGIOS_CAMINHADA = 7;
 	static const int ESTAGIOS_TROTE = 4;
-	static const int ESCALA = 1;
 
 	static constexpr double COMPRIMENTO_TRONCO = 3.2;
 	static constexpr double LARGURA_TRONCO = 1;
@@ -99,18 +98,22 @@ private:
 			{ 0, 0, 0, 0 }, /* CABEÇA */
 			{ 0, 0, 0, 0 }, /* PESCOÇO */
 			{ 0, 0, 0, 0 }, /* TRONCO */
-			{ 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL DIREITO */
-			{ 0, 0, 0, 0 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
-			{ 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO DIREITO */
-			{ 0, 0, 0, 0 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
-			{ 0, 0, 0, 0 }, /* CANELA FRONTAL DIREITA */
-			{ 0, 0, 0, 0 }, /* CANELA FRONTAL ESQUERDA */
-			{ 0, 0, 0, 0 }, /* CANELA TRASEIRA DIREITA */
-			{ 0, 0, 0, 0 }, /* CANELA TRASEIRA ESQUERDA */
-			{ 0, 0, 0, 0 }, /* CASCO FRONTAL DIREITO */
-			{ 0, 0, 0, 0 }, /* CASCO FRONTAL ESQUERDO */
-			{ 0, 0, 0, 0 }, /* CASCO TRASEIRO DIREITO */
-			{ 0, 0, 0, 0 }, /* CASCO TRASEIRO ESQUERDO */
+
+			{ -10, 23, 61, 47 }, /* ANTEBRAÇO FRONTAL DIREITO */
+			{ 56, 47, -20, 39 }, /* ANTEBRAÇO FRONTAL ESQUERDO */
+			{ -27, -62, -49, -56 }, /* ANTEBRAÇO TRASEIRO DIREITO */
+			{ -51, 4, -28, -2 }, /* ANTEBRAÇO TRASEIRO ESQUERDO */
+
+			{ -3, -80, -54, 0 }, /* CANELA FRONTAL DIREITA */
+			{ -57, -4, 1, -87 }, /* CANELA FRONTAL ESQUERDA */
+			{ 75, 41, 53, 77 }, /* CANELA TRASEIRA DIREITA */
+			{ 44, 67, 85, 51 }, /* CANELA TRASEIRA ESQUERDA */
+
+			{ 44, -5, -40, -2 }, /* CASCO FRONTAL DIREITO */
+			{ -21, -2, 48, -3 }, /* CASCO FRONTAL ESQUERDO */
+			{ -31, -5, 32, -45 }, /* CASCO TRASEIRO DIREITO */
+			{ 47, -35, -71, -7 }, /* CASCO TRASEIRO ESQUERDO */
+
 			{ 0, 0, 0, 0 } /* RABO */
 	};
 
