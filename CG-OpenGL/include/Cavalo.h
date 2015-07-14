@@ -61,8 +61,8 @@ private:
 		0, 0, 0.03, 0.08, 0.1, 0.07, 0.08, 0.05, 0.03, 0.03, 0.01, 0, 0
 	};
 
-	const double alturaTroncoTrote[ESTAGIOS_CAMINHADA] = {
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	const double alturaTroncoTrote[ESTAGIOS_TROTE] = {
+		0, 0, 0, 0
 	};
 
 	/**
