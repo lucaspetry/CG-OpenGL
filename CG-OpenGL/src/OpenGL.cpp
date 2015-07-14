@@ -83,7 +83,7 @@ void redesenharMundo() {
 	glutSwapBuffers();
 
 	if(!pausado) {
-		usleep(150000);
+		usleep(140000);
 		estagioModelo++;
 		estagioModelo = estagioModelo % numeroEstagios;
 	}
