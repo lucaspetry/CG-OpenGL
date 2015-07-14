@@ -84,9 +84,9 @@ void redesenharMundo() {
 
 	if(!pausado) {
 		if(modoCaminhada)
-			usleep(80000);
+			usleep(120000);
 		else
-			usleep(60000);
+			usleep(100000);
 
 		estagioModelo++;
 		estagioModelo = estagioModelo % numeroEstagios;
